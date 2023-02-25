@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4AFEB3B29AA42F1007A6EC5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFEB3A29AA42F1007A6EC5 /* LocationManager.swift */; };
+		D4AFEB4429AA4DFE007A6EC5 /* LocationSearchActivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFEB4329AA4DFE007A6EC5 /* LocationSearchActivationView.swift */; };
 		D4B342BF29A8D92E00231596 /* YandexGo__CloneApp_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B342BE29A8D92E00231596 /* YandexGo__CloneApp_App.swift */; };
 		D4B342C329A8D92E00231596 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B342C229A8D92E00231596 /* Assets.xcassets */; };
 		D4B342C629A8D92E00231596 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B342C529A8D92E00231596 /* Preview Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		D4AFEB3A29AA42F1007A6EC5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D4AFEB4329AA4DFE007A6EC5 /* LocationSearchActivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchActivationView.swift; sourceTree = "<group>"; };
 		D4B342BB29A8D92E00231596 /* YandexGo (CloneApp).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YandexGo (CloneApp).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B342BE29A8D92E00231596 /* YandexGo__CloneApp_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexGo__CloneApp_App.swift; sourceTree = "<group>"; };
 		D4B342C229A8D92E00231596 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,6 +38,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D4AFEB3C29AA4C7E007A6EC5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D4AFEB3E29AA4CC0007A6EC5 /* LocationSearch */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D4AFEB3D29AA4C89007A6EC5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Home;
+			path = Managers/Home;
+			sourceTree = "<group>";
+		};
+		D4AFEB3E29AA4CC0007A6EC5 /* LocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D4AFEB3F29AA4CD7007A6EC5 /* Views */,
+				D4AFEB4029AA4CDE007A6EC5 /* ViewModel */,
+			);
+			path = LocationSearch;
+			sourceTree = "<group>";
+		};
+		D4AFEB3F29AA4CD7007A6EC5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4AFEB4329AA4DFE007A6EC5 /* LocationSearchActivationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4AFEB4029AA4CDE007A6EC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D4B342B229A8D92D00231596 = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +97,12 @@
 		D4B342BD29A8D92E00231596 /* YandexGo (CloneApp) */ = {
 			isa = PBXGroup;
 			children = (
-				D4B342D229A8D9C800231596 /* New Group */,
+				D4B342D229A8D9C800231596 /* Home */,
 				D4B342D029A8D96E00231596 /* App */,
-				D4B342CE29A8D96800231596 /* Extensions */,
+				D4AFEB3C29AA4C7E007A6EC5 /* Core */,
+				D4AFEB3D29AA4C89007A6EC5 /* Home */,
 				D4B342CD29A8D96400231596 /* Managers */,
+				D4B342CE29A8D96800231596 /* Extensions */,
 				D4B342CC29A8D95800231596 /* Models */,
 				D4B342C229A8D92E00231596 /* Assets.xcassets */,
 				D4B342C429A8D92E00231596 /* Preview Content */,
@@ -104,12 +148,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		D4B342D229A8D9C800231596 /* New Group */ = {
+		D4B342D229A8D9C800231596 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				D4B342D329A8D9CB00231596 /* ViewModel */,
 			);
-			path = "New Group";
+			path = Home;
 			sourceTree = "<group>";
 		};
 		D4B342D329A8D9CB00231596 /* ViewModel */ = {
@@ -203,6 +247,7 @@
 				D4B342D829A8DA4F00231596 /* YandexMapViewRepresentable.swift in Sources */,
 				D4B342BF29A8D92E00231596 /* YandexGo__CloneApp_App.swift in Sources */,
 				D4B342D629A8D9F500231596 /* HomeView.swift in Sources */,
+				D4AFEB4429AA4DFE007A6EC5 /* LocationSearchActivationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
