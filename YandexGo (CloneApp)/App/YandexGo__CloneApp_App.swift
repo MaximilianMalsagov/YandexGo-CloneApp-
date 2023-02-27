@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct YandexGo__CloneApp_App: App {
+    @StateObject var locationViewModel = LocationSearchViewModel()
+    
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(locationViewModel)
         }
     }
 }
