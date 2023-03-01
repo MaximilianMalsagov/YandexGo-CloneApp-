@@ -11,6 +11,7 @@ import MapKit
 struct YandexMapViewRepresentable: UIViewRepresentable {
     let mapView = MKMapView()
     let locationManager = LocationManager()
+    @Binding var mapState : MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     
@@ -24,12 +25,23 @@ struct YandexMapViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        if let coordinate = locationViewModel.selectedLocationCoordinate {
-            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
-            context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
-
+        
+        switch mapState {
+            
+        case .noInput:
+            context.coordinator.clearMapViewAndRecenterUserLocation()
+            break
+        case .searchingForLocation:
+            break
+        case .locationSelected:
+            if let coordinate = locationViewModel.selectedLocationCoordinate {
+                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
+                context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
+            
         }
+            break
     }
+}
     
     func makeCoordinator() -> MapCoordinator   {
         return MapCoordinator(parent: self)
@@ -37,9 +49,12 @@ struct YandexMapViewRepresentable: UIViewRepresentable {
 }
 
 extension YandexMapViewRepresentable {
+    
     class MapCoordinator: NSObject , MKMapViewDelegate {
         let parent : YandexMapViewRepresentable
         var userLocationCoordinate: CLLocationCoordinate2D?
+        var currentRegion: MKCoordinateRegion?
+        
         init(parent: YandexMapViewRepresentable) {
             self.parent = parent
             super.init()
@@ -54,6 +69,7 @@ extension YandexMapViewRepresentable {
                 span: MKCoordinateSpan(latitudeDelta: 0.05,
                                        longitudeDelta: 0.05)
             )
+            self.currentRegion = region
             
             parent.mapView.setRegion(region, animated: true)
         }
@@ -108,6 +124,15 @@ extension YandexMapViewRepresentable {
                 }
                 
             }
+        func clearMapViewAndRecenterUserLocation() {
+            parent.mapView.removeAnnotations(parent.mapView.annotations)
+            parent.mapView.removeOverlays(parent.mapView.overlays)
+            
+            if let currentRegion = currentRegion {
+                parent.mapView.setRegion(currentRegion, animated: true)
+            }
+
+        }
         }
     }
 
