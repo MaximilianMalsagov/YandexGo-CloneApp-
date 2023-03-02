@@ -30,4 +30,24 @@ enum RideType : Int, CaseIterable, Identifiable {
         case .yandexXL: return "yandex-x"
         }
     }
+    
+    var baseFare: Double {
+        
+        switch self {
+        case .yandexX : return 5
+        case .black: return 10
+        case .yandexXL: return 24
+        }
+    }
+    func computePrice(for distanceInMeters: Double) -> Double {
+        let distanceInMiles = distanceInMeters / 1600
+        
+        switch self {
+        case .yandexX : return distanceInMiles * 1.5 + baseFare
+        case .black: return  distanceInMiles * 2.0 + baseFare
+        case .yandexXL: return distanceInMiles * 1.75 + baseFare
+        }
+    }
+    
+    
 }

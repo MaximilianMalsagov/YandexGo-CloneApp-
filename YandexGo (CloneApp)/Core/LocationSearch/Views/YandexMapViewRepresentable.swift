@@ -9,8 +9,9 @@ import SwiftUI
 import MapKit
 
 struct YandexMapViewRepresentable: UIViewRepresentable {
+    
     let mapView = MKMapView()
-    let locationManager = LocationManager()
+    let locationManager = LocationManager.shared 
     @Binding var mapState : MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
@@ -25,20 +26,20 @@ struct YandexMapViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
         switch mapState {
-            
         case .noInput:
             context.coordinator.clearMapViewAndRecenterUserLocation()
             break
         case .searchingForLocation:
             break
         case .locationSelected:
-            if let coordinate = locationViewModel.selectedLocationCoordinate {
+            if let coordinate = locationViewModel.selectedYandexLocation?.coordinate {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             
         }
+            break
+        case.polylineAdded :
             break
     }
 }
@@ -51,6 +52,8 @@ struct YandexMapViewRepresentable: UIViewRepresentable {
 extension YandexMapViewRepresentable {
     
     class MapCoordinator: NSObject , MKMapViewDelegate {
+        
+        
         let parent : YandexMapViewRepresentable
         var userLocationCoordinate: CLLocationCoordinate2D?
         var currentRegion: MKCoordinateRegion?
@@ -60,6 +63,8 @@ extension YandexMapViewRepresentable {
             super.init()
             
         }
+        
+        
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
             
             self.userLocationCoordinate = userLocation.coordinate
@@ -96,34 +101,16 @@ extension YandexMapViewRepresentable {
             
             guard let userLocationCoordinate = self.userLocationCoordinate else { return }
             
-            getDestinationRoute(from: userLocationCoordinate,
+            parent.locationViewModel.getDestinationRoute(from: userLocationCoordinate,
                                 to: coordinate) { route in
+                
                 self.parent.mapView.addOverlay(route.polyline)
+                self.parent.mapState = .polylineAdded
                 let rect = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 64, left: 32, bottom: 500, right: 32))
                 self.parent.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
             }
             
-        }
-            func getDestinationRoute(from userLocation: CLLocationCoordinate2D,
-                                     to destination: CLLocationCoordinate2D,
-                                     completion: @escaping(MKRoute) -> Void) {
-                
-                let userPlacemark = MKPlacemark(coordinate: userLocation)
-                let destPlacemark = MKPlacemark(coordinate: destination)
-                let request = MKDirections.Request()
-                request.source = MKMapItem(placemark: userPlacemark)
-                request.destination = MKMapItem(placemark: destPlacemark)
-                
-                let directions = MKDirections(request: request)
-                directions.calculate { response , error in
-                    if let error = error {
-                        print("DEBUG \(error.localizedDescription)")
-                        return
-                    }
-                    guard let route = response?.routes.first else { return }
-                    completion(route)
-                }
-                
+        
             }
         func clearMapViewAndRecenterUserLocation() {
             parent.mapView.removeAnnotations(parent.mapView.annotations)

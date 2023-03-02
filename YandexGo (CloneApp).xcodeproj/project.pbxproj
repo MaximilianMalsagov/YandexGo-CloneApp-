@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D42D007729B089F700826EA0 /* RideType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D007629B089F700826EA0 /* RideType.swift */; };
+		D42D007929B1469500826EA0 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D007829B1469500826EA0 /* Double.swift */; };
+		D42D007B29B149C200826EA0 /* YandexLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D007A29B149C200826EA0 /* YandexLocation.swift */; };
+		D42D007D29B1516800826EA0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D007C29B1516800826EA0 /* Color.swift */; };
 		D483509B29AB6C6F0070C110 /* MapViewActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483509A29AB6C6F0070C110 /* MapViewActionButton.swift */; };
 		D483509D29AB6E100070C110 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483509C29AB6E100070C110 /* LocationSearchView.swift */; };
 		D483509F29AB71E10070C110 /* LocationSearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483509E29AB71E10070C110 /* LocationSearchResultsCell.swift */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		D42D007629B089F700826EA0 /* RideType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideType.swift; sourceTree = "<group>"; };
+		D42D007829B1469500826EA0 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		D42D007A29B149C200826EA0 /* YandexLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexLocation.swift; sourceTree = "<group>"; };
+		D42D007C29B1516800826EA0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D483509A29AB6C6F0070C110 /* MapViewActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewActionButton.swift; sourceTree = "<group>"; };
 		D483509C29AB6E100070C110 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		D483509E29AB71E10070C110 /* LocationSearchResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsCell.swift; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 			children = (
 				D48350F729AF28F50070C110 /* MapViewState.swift */,
 				D42D007629B089F700826EA0 /* RideType.swift */,
+				D42D007A29B149C200826EA0 /* YandexLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +171,8 @@
 		D4B342CE29A8D96800231596 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D42D007829B1469500826EA0 /* Double.swift */,
+				D42D007C29B1516800826EA0 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,11 +282,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D48350A129AC8A7E0070C110 /* LocationSearchViewModel.swift in Sources */,
+				D42D007B29B149C200826EA0 /* YandexLocation.swift in Sources */,
 				D483509D29AB6E100070C110 /* LocationSearchView.swift in Sources */,
 				D4AFEB3B29AA42F1007A6EC5 /* LocationManager.swift in Sources */,
 				D48350FB29B079C60070C110 /* RideRequestView.swift in Sources */,
+				D42D007929B1469500826EA0 /* Double.swift in Sources */,
 				D48350F829AF28F50070C110 /* MapViewState.swift in Sources */,
 				D483509B29AB6C6F0070C110 /* MapViewActionButton.swift in Sources */,
+				D42D007D29B1516800826EA0 /* Color.swift in Sources */,
 				D483509F29AB71E10070C110 /* LocationSearchResultsCell.swift in Sources */,
 				D4B342D829A8DA4F00231596 /* YandexMapViewRepresentable.swift in Sources */,
 				D4B342BF29A8D92E00231596 /* YandexGo__CloneApp_App.swift in Sources */,
