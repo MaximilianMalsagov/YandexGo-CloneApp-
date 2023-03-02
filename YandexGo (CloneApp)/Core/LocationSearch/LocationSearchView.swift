@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LocationSearchView: View {
+    
     @State private var startLocationText = ""
     @Binding var mapState : MapViewState
     @EnvironmentObject var viewModel : LocationSearchViewModel
@@ -19,14 +20,18 @@ struct LocationSearchView: View {
                     Circle()
                         .fill(Color(.systemGray3))
                         .frame(width: 6,height: 6)
+                    
                     Rectangle()
                         .fill(Color(.systemGray3))
                         .frame(width: 1,height: 24)
+                    
                     Rectangle()
                         .fill(.black)
                         .frame(width: 6,height: 6)
                 }
+                
                 VStack{
+                    
                     TextField("Текущая геопозиция", text: $startLocationText)
                         .frame(height: 32)
                         .background(Color(.systemGroupedBackground))
@@ -50,8 +55,10 @@ struct LocationSearchView: View {
                     ForEach(viewModel.results, id: \.self) { result in
                         LocationSearchResultsCell(title: result.title, subtitle: result.subtitle)
                             .onTapGesture {
-                                viewModel.selectLocation(result)
-                                mapState == .locationSelected
+                                withAnimation(.spring()) {
+                                    viewModel.selectLocation(result)
+                                    mapState = .locationSelected
+                                }
                             }
                     }
                 }
